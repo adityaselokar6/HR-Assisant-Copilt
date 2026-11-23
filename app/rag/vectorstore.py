@@ -48,7 +48,7 @@ def get_embedding_dimension(model_name: str | None = None) -> int:
 def get_embeddings():
     global _embeddings
     if _embeddings is None:
-        if not settings.google_api_key:
+        if not settings.gemini_api_key:
             raise RuntimeError("GOOGLE_API_KEY is missing")
         _embeddings = GoogleGenerativeAIEmbeddings(
             model=settings.embedding_model,
