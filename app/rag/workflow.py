@@ -1,6 +1,6 @@
 import logging
 from typing import Literal
-from langchain_openai import ChatOpenAI
+from langchain_google_genai  import ChatGoogleGenerativeAI
 from langchain_tavily import TavilySearch
 from langgraph.graph import StateGraph, START, END
 from app.core.config import get_settings
@@ -18,12 +18,12 @@ _web_search = None
 def llm():
     global _llm
     if _llm is None:
-        if not settings.openai_api_key:
-            raise RuntimeError("OPENAI_API_KEY is missing")
-        _llm = ChatOpenAI(
-            model=settings.openai_model,
+        if not settings.google_api_key:
+            raise RuntimeError("GOOGLE_API_KEY is missing")
+        _llm = ChatGoogleGenerativeAI(
+            model=settings.gemini_model,
             temperature=0,
-            api_key=settings.openai_api_key,
+            google_api_key=settings.google_api_key,
         )
     return _llm
 

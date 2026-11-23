@@ -1,6 +1,6 @@
 import time
 from pinecone import Pinecone , ServerlessSpec
-from langchain_openai import OpenAIEmbeddings
+from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_pinecone import PineconeVectorStore
 from app.core.config import get_settings
 
@@ -15,7 +15,11 @@ EMBEDDING_DIMENSIONS = {
     "text-embedding-3-small": 1536,
     "text-embedding-3-large": 3072,
     "text-embedding-ada-002": 1536,
-    "all-minilm-l6-v2": 384,
+    "all-minilm-16-v2": 384,
+    "gemini-embedding-001": 3072,
+    "models/gemini-embedding-001": 3072,
+    "gemini-embedding-2-preview": 3072,
+    "models/gemini-embedding-2-preview": 3072,
 }
 
 
@@ -44,11 +48,11 @@ def get_embedding_dimension(model_name: str | None = None) -> int:
 def get_embeddings():
     global _embeddings
     if _embeddings is None:
-        if not settings.openai_api_key:
-            raise RuntimeError("OPENAI_API_KEY is missing")
-        _embeddings = OpenAIEmbeddings(
+        if not settings.google_api_key:
+            raise RuntimeError("GOOGLE_API_KEY is missing")
+        _embeddings = GoogleGenerativeAIEmbeddings(
             model=settings.embedding_model,
-            api_key=settings.openai_api_key,
+            google_api_key=settings.google_api_key,
         )
     return _embeddings
 
