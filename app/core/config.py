@@ -14,7 +14,7 @@ class Settings(BaseSettings):
     pinecone_index_name: str = "fde-hr-policy-rag"
     pinecone_namespace: str = "company-hr-kb"
     embedding_model: str = "gemini-embedding-001"
-    gemini_model: str = "gemini-2.5-flash"
+    gemini_model: str = "gemini-3.8-flash"
     top_k: int = 4
     max_retries: int = 1
     admin_api_key: str = "change-me-in-production"
