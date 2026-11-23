@@ -18,12 +18,12 @@ _web_search = None
 def llm():
     global _llm
     if _llm is None:
-        if not settings.google_api_key:
+        if not settings.gemini_api_key:
             raise RuntimeError("GOOGLE_API_KEY is missing")
         _llm = ChatGoogleGenerativeAI(
             model=settings.gemini_model,
             temperature=0,
-            google_api_key=settings.google_api_key,
+            google_api_key=settings.gemini_api_key,
         )
     return _llm
 
