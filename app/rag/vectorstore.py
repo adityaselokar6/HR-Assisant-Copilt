@@ -52,7 +52,7 @@ def get_embeddings():
             raise RuntimeError("GOOGLE_API_KEY is missing")
         _embeddings = GoogleGenerativeAIEmbeddings(
             model=settings.embedding_model,
-            google_api_key=settings.google_api_key,
+            google_api_key=settings.gemini_api_key,
         )
     return _embeddings
 
